@@ -15,9 +15,10 @@ class AutoCreateShared extends \Rocketeer\Abstracts\AbstractTask
      */
     public function execute()
     {
-        $this->command->info($this->description);
-        $basePath = $this->paths->getHomeFolder() . '/shared';
-        $shareds = $this->rocketeer->getOption('remote.shared');
+        $task = $this;
+        $basePath = $task->paths->getHomeFolder() . '/shared';
+        $localPath = $task->paths->getRocketeerConfigFolder();
+        $shareds = $task->rocketeer->getOption('remote.shared');
         //folders
         foreach ($shareds as $object) {
             $arObject = pathinfo($object);
@@ -26,9 +27,9 @@ class AutoCreateShared extends \Rocketeer\Abstracts\AbstractTask
             $checkedPath = '';
             foreach ($arPath as $chain) {
                 $fullPath = "{$basePath}{$checkedPath}/{$chain}";
-                $isFolderExists = $this->fileExists($fullPath);
+                $isFolderExists = trim($task->runRaw('[ -d \'' . $fullPath . '\' ] && echo 1')) === '1';
                 if (!$isFolderExists) {
-                    $this->createFolder($fullPath);
+                    $task->run("mkdir '{$fullPath}'");
                 }
                 $checkedPath .= "/{$chain}";
             }
@@ -39,16 +40,13 @@ class AutoCreateShared extends \Rocketeer\Abstracts\AbstractTask
             if (empty($arObject['extension'])) continue;
             $object = trim($object, "/ \t\n\r\0\x0B");
             $fullPath = "{$basePath}/{$object}";
-            if ($this->fileExists($fullPath)) continue;
-            $this->run("touch '{$fullPath}'");
-            //$local = __DIR__ . '/../examples/' . $arObject['basename'];
-            /*
+            if (trim($task->runRaw('[ -f \'' . $fullPath . '\' ] && echo 1')) === '1') continue;
+            $task->run("touch '{$fullPath}'");
+            $local = $localPath . '/../examples/' . $arObject['basename'];
             if (file_exists($local)) {
                 $content = file_get_contents($local);
-                $this->runRaw('echo "' . addcslashes($content, '"$') . '" > "'. $fullPath . '"');
+                $task->runRaw('echo "' . addcslashes($content, '"$') . '" > "'. $fullPath . '"');
             }
-            */
         }
-        return true;
     }
 }

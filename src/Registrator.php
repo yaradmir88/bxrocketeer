@@ -2,70 +2,67 @@
 
 namespace bxrocketeer;
 
-use \Rocketeer\Rocketeer;
+use Rocketeer\Abstracts\AbstractPlugin;
+use Rocketeer\Services\TasksHandler;
 
-class Registrator
+class Registrator extends AbstractPlugin
 {
     /**
      * Регистрирует события для данной библиотеки
      */
-    public static function events($priority = 0)
+    public function onQueue(TasksHandler $queue)
     {
         $events = [
             //делаем композер исполняемым из-за дурацкой винды
             [
-                'type' => 'before',
-                'name' => 'dependencies',
+                'event' => 'before',
+                'task' => 'dependencies',
                 'handler_class' => '\\bxrocketeer\\SetComposerAsExecutable',
             ],
             //создаем shared папки
             [
-                'type' => 'after',
-                'name' => 'setup',
+                'event' => 'after',
+                'task' => 'setup',
                 'handler_class' => '\\bxrocketeer\\AutoCreateShared',
             ],
             //настраиваем репу
             [
-                'type' => 'after',
-                'name' => 'setup',
+                'event' => 'after',
+                'task' => 'setup',
                 'handler_class' => '\\bxrocketeer\\Git',
             ],
             //удаляем следы роекетира с хоста
             [
-                'type' => 'after',
-                'name' => 'deploy',
+                'event' => 'after',
+                'task' => 'deploy',
                 'handler_class' => '\\bxrocketeer\\CleanRockteerData',
             ],
             //удаляем следы роекетира с хоста
             [
-                'type' => 'after',
-                'name' => 'update',
+                'event' => 'after',
+                'task' => 'update',
                 'handler_class' => '\\bxrocketeer\\CleanRockteerData',
             ],
             //очищаем битриксовый кэш
             [
-                'type' => 'after',
-                'name' => 'update',
+                'event' => 'after',
+                'task' => 'update',
                 'handler_class' => '\\bxrocketeer\\ClearBitrixCache',
             ],
         ];
         foreach ($events as $event) {
-            self::registerEvent($event, $priority);
+            $this->registerEvent($event, $queue);
         }
     }
 
     /**
      * Регистрирует событие
      */
-    protected static function registerEvent(array $event, $priority)
+    protected function registerEvent(array $event, TasksHandler $queue)
     {
-        if (empty($event['type']) || empty($event['name']) || empty($event['handler_class'])) {
+        if (empty($event['event']) || empty($event['task']) || empty($event['handler_class'])) {
             return null;
         }
-        if ($event['type'] === 'before') {
-            Rocketeer::before($event['name'], $event['handler_class'], $priority);
-        } else {
-            Rocketeer::after($event['name'], $event['handler_class'], $priority);
-        }
+        $queue->addTaskListeners($event['task'], $event['event'], $event['handler_class'], -10, true);
     }
 }

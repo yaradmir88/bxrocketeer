@@ -17,5 +17,5 @@ class SetComposerAsExecutable extends \Rocketeer\Abstracts\AbstractTask
     {
         $this->command->info($this->description);
         return $this->runForCurrentRelease('chmod 0770 composer.phar');
-    };
+    }
 }
