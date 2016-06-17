@@ -61,9 +61,9 @@ class Registrator
             return null;
         }
         if ($event['type'] === 'before') {
-            Rocketeer::before($event['name'], $event['handler_class'], $priority);
+            \Rocketeer::before($event['name'], $event['handler_class'], $priority);
         } else {
-            Rocketeer::after($event['name'], $event['handler_class'], $priority);
+            \Rocketeer::after($event['name'], $event['handler_class'], $priority);
         }
     }
 }
