@@ -16,7 +16,7 @@ class ClearBitrixCache extends \Rocketeer\Abstracts\AbstractTask
     public function execute()
     {
         $this->command->info($this->description);
-        return $task->runForCurrentRelease([
+        return $this->runForCurrentRelease([
             'rm -Rf web/bitrix/cache/*',
             'rm -Rf web/bitrix/managed_cache/*',
         ]);
