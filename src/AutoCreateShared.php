@@ -17,7 +17,7 @@ class AutoCreateShared extends \Rocketeer\Abstracts\AbstractTask
     {
         $task = $this;
         $basePath = $task->paths->getHomeFolder() . '/shared';
-        $localPath = $task->paths->getRocketeerConfigFolder();
+        $localPath = $task->paths->getConfigurationPath();
         $shareds = $task->rocketeer->getOption('remote.shared');
         //folders
         foreach ($shareds as $object) {
