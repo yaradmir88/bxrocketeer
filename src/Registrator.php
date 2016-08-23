@@ -39,7 +39,7 @@ class Registrator extends AbstractPlugin
 			],
 			//очищаем битриксовый кэш
 			[
-				'event' => 'after',
+				'event' => 'before',
 				'task' => 'update',
 				'handler_class' => '\\bxrocketeer\\ClearBitrixCache',
 			],
