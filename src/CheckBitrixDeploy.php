@@ -15,8 +15,11 @@ class CheckBitrixDeploy extends \Rocketeer\Abstracts\AbstractTask
 	 */
 	public function execute()
 	{
-		if (ini_get('mbstring.func_overload') !== '0') {
-			$this->command->error('Внимание, в php.ini установлен mbstring.func_overload, деплой работать не будет.');
+		$overload = ini_get('mbstring.func_overload');
+		if ($overload !== '0') {
+			$this->command->error(
+				'mbstring.func_overload is set to ' . $overload . '. Change it to 0 in your php.ini.'
+			);
 			$this->halt();
 			return false;
 		}
