@@ -5,8 +5,7 @@
     "keywords": ["php", "bitrix", "rocketeer"],
     "license": "MIT",
     "require": {
-        "php": ">=5.4.0",
-        "marvin255/bxmigrate": "dev-master"
+        "php": ">=5.4.0"
     },
     "autoload": {
         "psr-4": { "bxrocketeer\\": "src/" }
@@ -15,10 +14,6 @@
         {
             "type": "git",
             "url": "https://github.com/marvin255/bxrocketeer"
-        },
-        {
-          "type": "git",
-          "url": "https://github.com/marvin255/bxmigrate"
         }
     ]
 }
