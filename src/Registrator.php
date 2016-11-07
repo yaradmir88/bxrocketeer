@@ -12,13 +12,6 @@ class Registrator extends AbstractPlugin
      */
     public function onQueue(TasksHandler $queue)
     {
-        //регистрируем миграции для битрикса
-        $queue->config->set(
-            'strategies.Migrate',
-            '\bxrocketeer\migrations\BitrixMigrateStrategy'
-        );
-        echo 1111111111111111111111; die();
-        //var_dump($queue->rocketeer->config->get('strategies.migrate')); die();
         //подключаем обработчики событий
         $events = [
             //делаем композер исполняемым из-за дурацкой винды
