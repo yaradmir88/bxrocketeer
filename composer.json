@@ -1,19 +1,24 @@
 {
-  "name": "marvin255/bxrocketeer",
-  "description": "События rocketeer для битрикса",
-  "type": "library",
-  "keywords": ["php", "bitrix", "rocketeer"],
-  "license": "MIT",
-  "require": {
-  	"php": ">=5.3.2"
-  },
-  "autoload": {
-  	"psr-4": { "bxrocketeer\\": "src/" }
-  },
-  "repositories": [
-  	{
-  		"type": "git",
-  		"url": "https://github.com/marvin255/bxrocketeer"
-  	}
-  ]
+    "name": "marvin255/bxrocketeer",
+    "description": "События rocketeer для битрикса",
+    "type": "library",
+    "keywords": ["php", "bitrix", "rocketeer"],
+    "license": "MIT",
+    "require": {
+        "php": ">=5.4.0",
+        "marvin255/bxmigrate": "dev-master"
+    },
+    "autoload": {
+        "psr-4": { "bxrocketeer\\": "src/" }
+    },
+    "repositories": [
+        {
+            "type": "git",
+            "url": "https://github.com/marvin255/bxrocketeer"
+        },
+        {
+          "type": "git",
+          "url": "https://github.com/marvin255/bxmigrate"
+        }
+    ]
 }
