@@ -30,7 +30,7 @@ class BitrixMigrateStrategy extends AbstractStrategy implements MigrateStrategyI
     public function migrate()
     {
         $this->runForCurrentRelease([
-            $this->php()->getCommand('cli.php bxmigrate:up'),
+            $this->php()->getCommand('-d short_open_tag=On -f cli.php bxmigrate:up'),
         ]);
     }
 
