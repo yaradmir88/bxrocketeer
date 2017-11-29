@@ -23,7 +23,7 @@ class SyncDeployStrategy extends SyncStrategy
         $options = ['--recursive' => null, '--rsh' => 'ssh', '--compress' => null];
 
         // Create SSH command
-        $options['--rsh'] = $this->getTransport();
+        $options['--rsh'] = $this->getTransport() . ' -o StrictHostKeyChecking=no';
 
         // Build arguments
         $arguments[] = $source;
