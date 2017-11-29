@@ -20,7 +20,7 @@ class SyncDeployStrategy extends SyncStrategy
         $handle = $this->getSyncHandle();
 
         // Create options
-        $options = ['--verbose' => null, '--recursive' => null, '--rsh' => 'ssh', '--compress' => null];
+        $options = ['--recursive' => null, '--rsh' => 'ssh', '--compress' => null];
 
         // Create SSH command
         $options['--rsh'] = $this->getTransport();
@@ -30,7 +30,19 @@ class SyncDeployStrategy extends SyncStrategy
         $arguments[] = $handle.':'.$destination;
 
         // Set excluded files and folders
-        $options['--exclude'] = ['.git'];
+        $options['--exclude'] = [
+            '.git',
+            '.rocketeer',
+            '.php_cs.cache',
+            '.vagrant',
+            'frontend',
+            'web/upload',
+            'web/bitrix/.settings.php',
+            'web/bitrix/php_interface/dbconn.php',
+            'web/bitrix/cache',
+            'web/bitrix/managed_cache',
+            'web/bitrix/stack_cache',
+        ];
 
         // Create binary and command
         $rsync = $this->binary('rsync');
