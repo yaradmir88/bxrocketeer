@@ -1,11 +1,13 @@
 <?php
 
-namespace bxrocketeer;
+namespace bxrocketeer\tasks;
+
+use Rocketeer\Abstracts\AbstractTask;
 
 /**
  * Проверяет можно ли запустить деплой на данной локальной машине.
  */
-class CheckBitrixDeploy extends \Rocketeer\Abstracts\AbstractTask
+class CheckBitrixDeploy extends AbstractTask
 {
     /**
      * @var string
