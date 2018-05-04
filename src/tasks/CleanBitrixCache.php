@@ -28,7 +28,7 @@ class CleanBitrixCache extends \Rocketeer\Abstracts\AbstractTask
         $getListCommand = $this->php()->getCommand("-d short_open_tag=On -f {$releasePath}/cli.php list");
         $listOfAviableCommands = $this->runRaw($getListCommand);
         if (mb_strpos($listOfAviableCommands, 'base:cache.clear') !== false) {
-            $clearCommands[] = $this->php()->getCommand('-d short_open_tag=On -f cli.php base:cache.clear');
+            $clearCommands[] = $this->php()->getCommand('-d short_open_tag=On -f cli.php base:cache.clear --quiet');
         }
 
         return $this->runForCurrentRelease($clearCommands);
