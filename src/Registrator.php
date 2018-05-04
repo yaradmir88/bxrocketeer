@@ -4,10 +4,6 @@ namespace bxrocketeer;
 
 use Rocketeer\Abstracts\AbstractPlugin;
 use Rocketeer\Services\TasksHandler;
-use bxrocketeer\tasks\CheckBitrixDeploy;
-use bxrocketeer\tasks\SetComposerAsExecutable;
-use bxrocketeer\tasks\CleanRockteerData;
-use bxrocketeer\tasks\CleanBitrixCache;
 
 /**
  * Плагин, который регистрирует все таскидля упрощения деплоя на битриксе.
@@ -21,7 +17,7 @@ class Registrator extends AbstractPlugin
         [
             'event' => 'before',
             'task' => 'dependencies',
-            'handler_class' => SetComposerAsExecutable::class,
+            'handler_class' => '\\bxrocketeer\\tasks\\SetComposerAsExecutable',
         ],
         [
             'event' => 'after',
@@ -36,17 +32,17 @@ class Registrator extends AbstractPlugin
         [
             'event' => 'after',
             'task' => 'deploy',
-            'handler_class' => CleanRockteerData::class,
+            'handler_class' => '\\bxrocketeer\\tasks\\CleanRockteerData',
         ],
         [
             'event' => 'before',
             'task' => 'dependencies',
-            'handler_class' => CleanBitrixCache::class,
+            'handler_class' => '\\bxrocketeer\\tasks\\CleanBitrixCache',
         ],
         [
             'event' => 'before',
             'task' => 'primer',
-            'handler_class' => CheckBitrixDeploy::class,
+            'handler_class' => '\\bxrocketeer\\tasks\\CheckBitrixDeploy',
         ],
     ];
 
