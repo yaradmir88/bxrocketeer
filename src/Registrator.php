@@ -19,15 +19,15 @@ class Registrator extends AbstractPlugin
             'task' => 'dependencies',
             'handler_class' => '\\bxrocketeer\\tasks\\SetComposerAsExecutable',
         ],
+        // [
+        //     'event' => 'after',
+        //     'task' => 'setup',
+        //     'handler_class' => '\\bxrocketeer\\AutoCreateShared',
+        // ],
         [
             'event' => 'after',
             'task' => 'setup',
-            'handler_class' => '\\bxrocketeer\\AutoCreateShared',
-        ],
-        [
-            'event' => 'after',
-            'task' => 'setup',
-            'handler_class' => '\\bxrocketeer\\Git',
+            'handler_class' => '\\bxrocketeer\\tasks\\PrepareSshForGit',
         ],
         [
             'event' => 'after',
