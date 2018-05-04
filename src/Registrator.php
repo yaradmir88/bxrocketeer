@@ -6,7 +6,7 @@ use Rocketeer\Abstracts\AbstractPlugin;
 use Rocketeer\Services\TasksHandler;
 
 /**
- * Плагин, который регистрирует все таскидля упрощения деплоя на битриксе.
+ * Плагин, который регистрирует все таски для упрощения деплоя на битриксе.
  */
 class Registrator extends AbstractPlugin
 {
