@@ -38,7 +38,7 @@ class Git extends \Rocketeer\Abstracts\AbstractTask
         $hostname = $arRepo['host'];
         $task->runForCurrentRelease([
             "ssh-keygen -R {$hostname}",
-            'ssh-keyscan -t rsa'.(!empty($arRepo['port']) ? " -p{$arRepo['port']}" : '')." -H {$hostname} >> ~/.ssh/known_hosts",
+            'ssh-keyscan -t rsa' . (!empty($arRepo['port']) ? " -p{$arRepo['port']}" : '') . " -H {$hostname} >> ~/.ssh/known_hosts",
         ]);
     }
 
@@ -52,6 +52,6 @@ class Git extends \Rocketeer\Abstracts\AbstractTask
             $task->runRaw('ssh-keygen -t rsa -N "" -f ~/.ssh/id_rsa');
         }
         $key = $task->runRaw('cat ~/.ssh/id_rsa.pub');
-        $task->command->info('Hosting ssh key is: '.$key);
+        $task->command->info('Hosting ssh key is: ' . $key);
     }
 }

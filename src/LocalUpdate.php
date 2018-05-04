@@ -12,7 +12,7 @@ class LocalUpdate extends \Rocketeer\Abstracts\AbstractTask
 
     public function execute()
     {
-        $localPath = realpath($this->paths->getConfigurationPath().'/../');
+        $localPath = realpath($this->paths->getConfigurationPath() . '/../');
         $this->command->info($this->description);
         $this->run("cd {$localPath}");
         $this->run('git pull');

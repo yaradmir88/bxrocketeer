@@ -27,7 +27,7 @@ class SyncDeployStrategy extends SyncStrategy
 
         // Build arguments
         $arguments[] = $source;
-        $arguments[] = $handle.':'.$destination;
+        $arguments[] = $handle . ':' . $destination;
 
         // Set excluded files and folders
         $options['--exclude'] = [

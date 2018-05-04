@@ -12,7 +12,7 @@ class AutoCreateShared extends \Rocketeer\Abstracts\AbstractTask
     public function execute()
     {
         $task = $this;
-        $basePath = $task->paths->getHomeFolder().'/shared';
+        $basePath = $task->paths->getHomeFolder() . '/shared';
         $localPath = $task->paths->getConfigurationPath();
         $shareds = $task->rocketeer->getOption('remote.shared');
         //folders
@@ -25,7 +25,7 @@ class AutoCreateShared extends \Rocketeer\Abstracts\AbstractTask
             $checkedPath = '';
             foreach ($arPath as $chain) {
                 $fullPath = "{$basePath}{$checkedPath}/{$chain}";
-                $isFolderExists = trim($task->runRaw('[ -d \''.$fullPath.'\' ] && echo 1')) === '1';
+                $isFolderExists = trim($task->runRaw('[ -d \'' . $fullPath . '\' ] && echo 1')) === '1';
                 if (!$isFolderExists) {
                     $task->run("mkdir '{$fullPath}'");
                 }
@@ -40,14 +40,14 @@ class AutoCreateShared extends \Rocketeer\Abstracts\AbstractTask
             }
             $object = trim($object, "/ \t\n\r\0\x0B");
             $fullPath = "{$basePath}/{$object}";
-            if (trim($task->runRaw('[ -f \''.$fullPath.'\' ] && echo 1')) === '1') {
+            if (trim($task->runRaw('[ -f \'' . $fullPath . '\' ] && echo 1')) === '1') {
                 continue;
             }
             $task->run("touch '{$fullPath}'");
-            $local = $localPath.'/../examples/'.$arObject['basename'];
+            $local = $localPath . '/../examples/' . $arObject['basename'];
             if (file_exists($local)) {
                 $content = file_get_contents($local);
-                $task->runRaw('echo "'.addcslashes($content, '"$').'" > "'.$fullPath.'"');
+                $task->runRaw('echo "' . addcslashes($content, '"$') . '" > "' . $fullPath . '"');
             }
         }
     }
