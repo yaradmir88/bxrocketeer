@@ -6,12 +6,12 @@ use Rocketeer\Bash;
 use Rocketeer\Strategies\Deploy\SyncStrategy;
 
 /**
- * Расширяем миграцию с помощью rsync.
+ * Деплой данных с помощью rsync.
  */
 class SyncDeployStrategy extends SyncStrategy
 {
     /**
-     * {@inheritdoc}
+     * @inheritdoc
      */
     protected function rsyncTo($destination, $source = './')
     {
