@@ -35,7 +35,7 @@ class Registrator extends AbstractPlugin
             'handler_class' => '\\bxrocketeer\\tasks\\CleanRockteerData',
         ],
         [
-            'event' => 'before',
+            'event' => 'after',
             'task' => 'dependencies',
             'handler_class' => '\\bxrocketeer\\tasks\\CleanBitrixCache',
         ],
