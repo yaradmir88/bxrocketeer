@@ -5,17 +5,18 @@ namespace bxrocketeer\migrations;
 use Rocketeer\Abstracts\Strategies\AbstractStrategy;
 use Rocketeer\Interfaces\Strategies\MigrateStrategyInterface;
 
+/**
+ * Стратегия для миграций, которая использует marvin255/bxmigrate.
+ */
 class BitrixMigrateStrategy extends AbstractStrategy implements MigrateStrategyInterface
 {
     /**
      * @var string
      */
-    protected $description = 'Migrates your database with bitrix CLI';
+    protected $description = 'Migrates your database with marvin255/bxmigrate';
 
     /**
-     * Whether this particular strategy is runnable or not.
-     *
-     * @return bool
+     * @inheritdoc
      */
     public function isExecutable()
     {
@@ -23,9 +24,7 @@ class BitrixMigrateStrategy extends AbstractStrategy implements MigrateStrategyI
     }
 
     /**
-     * Run outstanding migrations.
-     *
-     * @return bool|null
+     * @inheritdoc
      */
     public function migrate()
     {
@@ -35,9 +34,7 @@ class BitrixMigrateStrategy extends AbstractStrategy implements MigrateStrategyI
     }
 
     /**
-     * Seed the database.
-     *
-     * @return bool|null
+     * @inheritdoc
      */
     public function seed()
     {
