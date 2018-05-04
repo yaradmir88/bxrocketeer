@@ -2,10 +2,12 @@
 
 namespace bxrocketeer\tasks;
 
+use Rocketeer\Abstracts\AbstractTask;
+
 /**
  * Очищает кэш битрикса.
  */
-class CleanBitrixCache extends \Rocketeer\Abstracts\AbstractTask
+class CleanBitrixCache extends AbstractTask
 {
     /**
      * @var string
