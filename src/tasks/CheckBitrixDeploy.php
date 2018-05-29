@@ -22,7 +22,7 @@ class CheckBitrixDeploy extends AbstractTask
         $result = true;
         $overload = ini_get('mbstring.func_overload');
 
-        if ($overload !== '0') {
+        if ($overload !== false && $overload !== '0') {
             $this->command->error(
                 'mbstring.func_overload is set to ' . $overload
                 . '. Change it to 0 in your php.ini: ' . php_ini_loaded_file()
