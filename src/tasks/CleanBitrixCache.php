@@ -30,7 +30,8 @@ class CleanBitrixCache extends AbstractTask
         $getListCommand = $this->php()->getCommand("-d short_open_tag=On -f {$releasePath}/cli.php list");
         $listOfAviableCommands = $this->runRaw($getListCommand);
         if (mb_strpos($listOfAviableCommands, 'base:cache.clear') !== false) {
-            $clearCommands[] = $this->php()->getCommand('-d short_open_tag=On -f cli.php base:cache.clear --quiet');
+            $clearCacheCommand = $this->php()->getCommand('-d short_open_tag=On -f cli.php base:cache.clear --quiet');
+            array_unshift($clearCommands, $clearCacheCommand);
         }
 
         return $this->runForCurrentRelease($clearCommands);
