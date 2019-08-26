@@ -36,12 +36,12 @@ class SyncDeployStrategy extends SyncStrategy
             '.php_cs.cache',
             '.vagrant',
             'frontend',
-            'web/upload',
-            'web/bitrix/.settings.php',
-            'web/bitrix/php_interface/dbconn.php',
-            'web/bitrix/cache',
-            'web/bitrix/managed_cache',
-            'web/bitrix/stack_cache',
+            'upload',
+            'bitrix/.settings.php',
+            'bitrix/php_interface/dbconn.php',
+            'bitrix/cache',
+            'bitrix/managed_cache',
+            'bitrix/stack_cache',
         ];
 
         // Create binary and command

@@ -22,8 +22,8 @@ class CleanBitrixCache extends AbstractTask
         $this->command->info($this->description);
 
         $clearCommands = [
-            'rm -Rf web/bitrix/cache/*',
-            'rm -Rf web/bitrix/managed_cache/*',
+            'rm -Rf bitrix/cache/*',
+            'rm -Rf bitrix/managed_cache/*',
         ];
 
         $releasePath = rtrim($this->releasesManager->getCurrentReleasePath(), '/');
